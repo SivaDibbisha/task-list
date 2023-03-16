@@ -2,11 +2,13 @@ package com.codurance.training.tasks.refactored;
 
 import com.codurance.training.tasks.refactored.service.*;
 import com.codurance.training.tasks.refactored.service.impl.*;
+import com.codurance.training.tasks.refactored.util.Util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +28,15 @@ public final class TaskListNew implements Runnable {
 
     private ViewService viewService = new ViewServiceImpl();
 
-    private TaskService taskService = new TaskServiceImpl();
+    private TaskAddService taskaddService = new TaskAddServiceImpl();
+
+    private TaskDeleteService taskDeleteService = new TaskDeleteServiceImpl();
+
+    private ViewCommonService dueDateTaskService  = new DueDateTasksServiceImpl();
+
+    private ViewCommonService createdDateTaskService  = new CreatedDateTasksServiceImpl();
+
+    private ViewCommonService projectTaskService  = new ProjectTasksServiceImpl();
 
     public TaskListNew(BufferedReader reader, PrintWriter writer) {
         this.in = reader;
@@ -76,22 +86,22 @@ public final class TaskListNew implements Runnable {
                 taskcheckService.uncheck(commandRest[1], tasks, out);
                 break;
             case "deadline":
-                taskService.setDeadLine(commandRest[1], tasks, out);
+                taskaddService.setDeadLine(commandRest[1], tasks, out);
                 break;
             case "today":
-                viewService.taskDueToday(tasks, out);
+                 dueDateTaskService.tasksByAttribute(Util.dateToString(new Date()),tasks, out);
                 break;
             case "delete":
-                taskService.deleteTask(commandRest[1], tasks, out);
+                taskDeleteService.deleteTask(commandRest[1], tasks, out);
                 break;
             case "viewByCreatedDate":
-                viewService.tasksCreatedDate(commandRest[1], tasks, out);
+                createdDateTaskService.tasksByAttribute(commandRest[1], tasks, out);
                 break;
             case "viewByDeadLineDate":
-                viewService.tasksDeadLineDate(commandRest[1], tasks, out);
+                dueDateTaskService.tasksByAttribute(commandRest[1], tasks, out);
                 break;
             case "viewByProjectName":
-                viewService.tasksByProject(commandRest[1], tasks, out);
+                projectTaskService.tasksByAttribute(commandRest[1], tasks, out);
                 break;
             case "help":
                 taskHelpService.help(out);

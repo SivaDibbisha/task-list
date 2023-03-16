@@ -3,7 +3,7 @@ package com.codurance.training.tasks.refactored.service.impl;
 import com.codurance.training.tasks.refactored.Task;
 import com.codurance.training.tasks.refactored.service.ProjectService;
 import com.codurance.training.tasks.refactored.service.TaskListService;
-import com.codurance.training.tasks.refactored.service.TaskService;
+import com.codurance.training.tasks.refactored.service.TaskAddService;
 import com.codurance.training.tasks.refactored.util.Util;
 
 import java.io.PrintWriter;
@@ -14,7 +14,7 @@ public class TaskListServiceImpl implements TaskListService {
 
     private final ProjectService porectService = new ProjectServiceImpl();
 
-    private final TaskService taskService = new TaskServiceImpl();
+    private final TaskAddService taskService = new TaskAddServiceImpl();
 
     // execute("add task P2 t2");
     // execute("add project P2");

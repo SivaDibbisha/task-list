@@ -16,6 +16,10 @@ public class TaskHelpServiceImpl implements TaskHelpService {
         out.println("  deadline <ID> <date>");
         out.println("  today");
         out.println("  delete <ID>");
+        out.println("  viewByCreatedDate <created date>");
+        out.println("  viewByDeadLineDate <dead line date>");
+        out.println("  viewByProjectName <project name>");
+
         out.println();
     }
 }

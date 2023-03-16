@@ -6,6 +6,6 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
-public interface ViewService {
-    void show(Map<String, List<Task>> tasks, PrintWriter out);
+public interface ViewCommonService {
+    void tasksByAttribute(String attribute , Map<String, List<Task>> tasks, PrintWriter out);
 }
